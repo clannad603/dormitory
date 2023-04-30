@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">公寓</string>
+    <string name="home">主页</string>
+    <string name="mine">我的</string>
+    <string name="information_system">系统公告</string>
+    <string name="repair">维修</string>
+</resources>

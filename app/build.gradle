@@ -1,0 +1,148 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
+
+android {
+    signingConfigs {
+        debug {
+            storeFile file('D:\\Users\\test_bitmap.jks')
+            storePassword 'clannadhr01'
+            keyAlias 'key0'
+            keyPassword 'clannadhr01'
+        }
+        release{
+            storeFile file('D:\\Users\\test_bitmap.jks')
+            storePassword 'clannadhr01'
+            keyAlias 'key0'
+            keyPassword 'clannadhr01'
+        }
+    }
+    namespace 'com.huangrui.dormitory'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.huangrui.dormitory"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.2.0'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDir 'libs'
+        }
+    }
+// Allow references to generated code
+    kapt {
+        correctErrorTypes true
+    }
+}
+
+
+dependencies {
+
+//    navigation
+    implementation "androidx.navigation:navigation-compose:$nav_version"
+    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
+//     hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    implementation "androidx.hilt:hilt-navigation-compose:$hiltCompose_version"
+//    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltCompose_version"
+    kapt "androidx.hilt:hilt-compiler:$hiltCompiler_version"
+
+//    伴奏库
+    implementation "com.google.accompanist:accompanist-permissions:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-insets:$accompanist_version"
+    //系统ui控制器
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.27.0"
+    //viewPager
+    implementation "com.google.accompanist:accompanist-pager:0.20.2"
+    implementation "com.google.accompanist:accompanist-pager-indicators:$accompanist_version"
+    //下拉刷新
+    implementation "com.google.accompanist:accompanist-swiperefresh:0.27.0"
+    //流式布局
+    implementation "com.google.accompanist:accompanist-flowlayout:0.22.0-rc"
+    //placeholder
+    implementation "com.google.accompanist:accompanist-placeholder-material:$accompanist_version"
+
+//    paging
+    implementation "androidx.paging:paging-runtime:$paging_version"
+    implementation "androidx.paging:paging-compose:$pagingCompose_version"
+    testImplementation "androidx.paging:paging-common:$paging_version"
+
+//数据保存，用于cookie持久化
+    implementation "androidx.datastore:datastore-preferences:$datastore_version"
+    implementation "androidx.datastore:datastore-core:$datastore_version"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.7.10"
+
+//    网络
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$gson_version"
+    implementation "com.google.code.gson:gson:$gson_version"
+
+//    coil
+    implementation "io.coil-kt:coil-compose:2.1.0"
+
+
+//    compose
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    implementation "androidx.compose.material3:material3:$material3_version"
+    implementation 'androidx.activity:activity-compose:1.6.1'
+
+//    百度人脸
+    implementation project(path: ':faceplatform-ui')
+
+//    百度地图
+    implementation files('libs\\BaiduLBS_Android.jar')
+
+//    原生类库
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation "androidx.activity:activity-ktx:1.6.1"
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+
+//    测试
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+}
